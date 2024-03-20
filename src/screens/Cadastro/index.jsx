@@ -5,7 +5,9 @@ import {
   View,
   StatusBar,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
+import { useState } from "react";
 import { ImageBackground } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Feather } from "@expo/vector-icons";
@@ -16,15 +18,29 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Home() {
-  // const [task, setTask] = useState("");
-  // const [list, setList] = useState([]);
+  const navigation = useNavigation();
+  const [planet, setPlanet] = useState("");
+  const [date, setDate] = useState("");
+  const [color1, setColor1] = useState("");
+  const [color2, setColor2] = useState("");
+  const [populacao, setPopulacao] = useState("");
+  const [recursos, setRecursos] = useState("");
+  const [assentamestos, setAssentamentos] = useState("");
+  const [galaxia, setGalaxia] = useState("");
+  const [sistema, setSistema] = useState("");
+  const [coordenadas, setCoordenadas] = useState("");
+  const [frequencia, setFrequencia] = useState("");
+  const [codificacao, setCodificacao] = useState("");
+  const [name, setName] = useState("");
+  const [cargo, setCargo] = useState("");
+  const [list, setList] = useState([]);
 
-  // const addTask = () => {
-  //   if (task.trim().length > 0) {
-  //     setList([...list, { id: Math.random().toString(), value: task }]);
-  //     setTask("");
-  //   }
-  // };
+  const addPlanet = () => {
+    if (planet.trim().length > 0) {
+      setList([...list, { id: Math.random().toString(), value: planet }]);
+      setPlanet("");
+    }
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -47,6 +63,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite o nome do planeta"
+                onChangeText={setPlanet}
+                value={planet}
               />
             </View>
             <View style={styles.icondisplay}>
@@ -60,6 +78,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a data de conquista"
+                onChangeText={setDate}
+                value={date}
               />
             </View>
 
@@ -74,6 +94,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a cor primária do planeta"
+                onChangeText={setColor1}
+                value={color1}
               />
             </View>
 
@@ -88,6 +110,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a cor secundária do planeta"
+                onChangeText={setColor2}
+                value={color2}
               />
             </View>
             <View style={styles.icondisplay}>
@@ -101,6 +125,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a população do planeta"
+                onChangeText={setPopulacao}
+                value={populacao}
               />
             </View>
             <View style={styles.icondisplay}>
@@ -114,6 +140,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite os recursos naturais do planeta"
+                onChangeText={setRecursos}
+                value={recursos}
               />
             </View>
             <View style={styles.icondisplay}>
@@ -127,6 +155,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite o número de assentamentos humanos"
+                onChangeText={setAssentamentos}
+                value={assentamestos}
               />
             </View>
             <Text style={styles.tituloSecundario}>Localização:</Text>
@@ -138,7 +168,12 @@ export default function Home() {
                 margin={5}
                 color="black"
               />
-              <TextInput style={styles.inputs} placeholder="Digite a galáxia" />
+              <TextInput
+                style={styles.inputs}
+                placeholder="Digite a galáxia"
+                onChangeText={setGalaxia}
+                value={galaxia}
+              />
             </View>
             <View style={styles.icondisplay}>
               <Feather
@@ -148,7 +183,12 @@ export default function Home() {
                 size={20}
                 color="black"
               />
-              <TextInput style={styles.inputs} placeholder="Digite o sistema" />
+              <TextInput
+                style={styles.inputs}
+                placeholder="Digite o sistema"
+                onChangeText={setSistema}
+                value={sistema}
+              />
             </View>
             <View style={styles.icondisplay}>
               <FontAwesome
@@ -161,6 +201,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite as coordenadas espaciais"
+                onChangeText={setCoordenadas}
+                value={coordenadas}
               />
             </View>
             <Text style={styles.tituloSecundario}>Comunicação:</Text>
@@ -175,6 +217,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a frequência de transmissão"
+                onChangeText={setFrequencia}
+                value={frequencia}
               />
             </View>
             <View style={styles.icondisplay}>
@@ -188,6 +232,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a codificação de comunicação"
+                onChangeText={setCodificacao}
+                value={codificacao}
               />
             </View>
             <Text style={styles.tituloSecundario}>Governante do Planeta:</Text>
@@ -202,6 +248,8 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite o nome do governante"
+                onChangeText={setName}
+                value={name}
               />
             </View>
             <View style={styles.icondisplay}>
@@ -215,11 +263,19 @@ export default function Home() {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite o título/cargo do governante"
+                onChangeText={setCargo}
+                value={cargo}
               />
             </View>
-            <View style={{ alignItems: "center" }}>
+            <View style={styles.buttondisplay}>
               <TouchableOpacity style={styles.button}>
                 <Text style={{ color: "white" }}>Adicionar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate("Home")}
+              >
+                <Text style={{ color: "white" }}>Voltar</Text>
               </TouchableOpacity>
             </View>
           </View>

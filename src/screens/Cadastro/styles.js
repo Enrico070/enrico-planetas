@@ -7,11 +7,11 @@ const styles = StyleSheet.create({
   containerinputs: {
     backgroundColor: "white",
     opacity: 0.7,
-    marginTop: 66,
+    marginTop: 56,
     margin: "auto",
     borderWidth: 1,
     width: 360,
-    height: 790,
+    height: 797,
     borderColor: "#20232a",
     borderRadius: 20,
     borderColor: "#000",
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#0000FF",
     borderRadius: 10,
     margin: 15,
-    width: 65,
+    width: 72,
     height: 34,
     alignItems: "center",
     padding: 5,
@@ -53,6 +53,11 @@ const styles = StyleSheet.create({
   },
 
   icondisplay: {
+    flexDirection: "row",
+    margin: 2,
+  },
+  buttondisplay: {
+    display: "flex",
     flexDirection: "row",
     margin: 2,
   },
