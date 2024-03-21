@@ -77,7 +77,7 @@ export default function Home() {
               />
               <TextInput
                 style={styles.inputs}
-                placeholder="Digite a data de conquista"
+                placeholder="Data da conquista (dd/mm/yyyy)"
                 onChangeText={setDate}
                 value={date}
               />
@@ -200,7 +200,7 @@ export default function Home() {
               />
               <TextInput
                 style={styles.inputs}
-                placeholder="Digite as coordenadas espaciais"
+                placeholder="Coordenadas espaciais (baseado no centro do universo)"
                 onChangeText={setCoordenadas}
                 value={coordenadas}
               />
