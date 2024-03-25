@@ -5,9 +5,13 @@ import {
   View,
   StatusBar,
 } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
+
 import styles from "./styles";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
+
 import { ImageBackground } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Feather } from "@expo/vector-icons";
@@ -17,15 +21,23 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Home() {
-  const navigation = useNavigation();
+import planetaRepositorio from "../../models/PlanetaRepositorio";
+import Planeta from "../../models/Planeta"; 
+
+export default function Cadastro({route}) {
+
+const navigation = useNavigation();
+
+let {planeta, edit} = route.params;
+
+
   const [planet, setPlanet] = useState("");
   const [date, setDate] = useState("");
   const [color1, setColor1] = useState("");
   const [color2, setColor2] = useState("");
   const [populacao, setPopulacao] = useState("");
   const [recursos, setRecursos] = useState("");
-  const [assentamestos, setAssentamentos] = useState("");
+  const [assentamentos, setAssentamentos] = useState("");
   const [galaxia, setGalaxia] = useState("");
   const [sistema, setSistema] = useState("");
   const [coordenadas, setCoordenadas] = useState("");
@@ -33,14 +45,65 @@ export default function Home() {
   const [codificacao, setCodificacao] = useState("");
   const [name, setName] = useState("");
   const [cargo, setCargo] = useState("");
-  const [list, setList] = useState([]);
+  const [isUpdate, setisUpdate] = useState(edit);
 
-  const addPlanet = () => {
-    if (planet.trim().length > 0) {
-      setList([...list, { id: Math.random().toString(), value: planet }]);
-      setPlanet("");
+  
+  useEffect(() => {
+    if (edit){
+      setPlanet(planeta.planet);
+      setDate(planeta.date);
+      setColor1(planeta.color1);
+      setColor2(planeta.color2);
+      setPopulacao(planeta.populacao);
+      setRecursos(planeta.recursos);
+      setAssentamentos(planeta.assentamestos);
+      setGalaxia(planeta.galaxia);
+      setSistema(planeta.sistema);
+      setCoordenadas(planeta.coordenadas);
+      setFrequencia(planeta.frequencia);
+      setCodificacao(planeta.codificacao);
+      setName(planeta.name);
+      setCargo(planeta.cargo);
+      setisUpdate(true);
+    } else{
+      clearInputs();
     }
-  };
+  }, [user, edit])
+
+  const handlePlanetaAction = () => {
+    if (isUpdate){
+      planetaRepositorio.update(planeta.planet, planeta.date, planeta.color1, planeta.color2, planeta.populacao, planeta.recursos, planeta.assentamentos, planeta.galaxia, planeta.sistema, planeta.coordenadas, planeta.frequencia, planeta.codificacao, planeta.name, planeta.cargo || 0)
+      clearInputs();
+    } else{
+      const newPlaneta = new Planeta(planet, date, color1, color2, populacao, recursos, assentamentos, galaxia, sistema, coordenadas, frequencia, codificacao, name, cargo || 0)
+      planetaRepositorio.add(newPlaneta)
+     clearInputs();
+    }
+    // navigation.navigate("Planeta")
+  }
+
+  const clearInputs = () => {
+    setisUpdate(false);
+    edit = false
+    setPlanet("");
+      setDate("");
+      setColor1("");
+      setColor2("");
+      setPopulacao("");
+      setRecursos("");
+      setAssentamentos("");
+      setGalaxia("");
+      setSistema("");
+      setCoordenadas("");
+      setFrequencia("");
+      setCodificacao("");
+      setName("");
+      setCargo("");
+  }
+
+
+  
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -49,7 +112,7 @@ export default function Home() {
       >
         <View style={{ alignItems: "center" }}>
           <View style={styles.containerinputs}>
-            <Text style={styles.tituloPrincipal}>Cadastro</Text>
+            <Text style={styles.tituloPrincipal}>{isUpdate ? "Edição" : "Cadastro"}</Text>
             <Text style={styles.tituloSecundario}>Dados do Planeta:</Text>
 
             <View style={styles.icondisplay}>
@@ -156,7 +219,7 @@ export default function Home() {
                 style={styles.inputs}
                 placeholder="Digite o número de assentamentos humanos"
                 onChangeText={setAssentamentos}
-                value={assentamestos}
+                value={assentamentos}
               />
             </View>
             <Text style={styles.tituloSecundario}>Localização:</Text>
@@ -268,8 +331,8 @@ export default function Home() {
               />
             </View>
             <View style={styles.buttondisplay}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: "white" }}>Adicionar</Text>
+              <TouchableOpacity style={styles.button} onPress={handlePlanetaAction}>
+                <Text style={{ color: "white" }}>{isUpdate ? "Salvar" : "Adicionar" }</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
@@ -278,10 +341,16 @@ export default function Home() {
                 <Text style={{ color: "white" }}>Voltar</Text>
               </TouchableOpacity>
             </View>
+
+            {isUpdate && (
+              <TouchableOpacity style={styles.button} onPress={clearInputs}>
+                <Text>Cancelar</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
         <StatusBar style="auto" />
       </ImageBackground>
     </View>
   );
-}
+  }

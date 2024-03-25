@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import Title from "../../components/Title";
+
 import { ImageBackground } from "react-native";
 import { Image } from "react-native";
 

@@ -1,4 +1,10 @@
-class PlanetaRepository {
+import {planeta} from "../data/Profile"
+import Planeta from "./Planeta"
+
+
+
+
+class PlanetaRepositorio {
     constructor() {
       this.planetas = [];
     }
@@ -20,28 +26,31 @@ class PlanetaRepository {
     }
   
     update(id, planet, date, color1, color2, populacao, recursos, assentamentos, galaxia, sistema, coordenadas, frequencia, codificacao, name, cargo) {
-      const mundo = this.get(id);
+      const planeta = this.get(id);
   
-      if (mundo) {
-      mundo.planet = planet;
-      mundo.date = date;
-      mundo.color1 = color1;
-      mundo.color2 = color2;
-      mundo.populacao = populacao;
-      mundo.recursos = recursos;
-      mundo.assentamentos = assentamentos;
-      mundo.galaxia = galaxia;
-      mundo.sistema = sistema;
-      mundo.coordenadas = coordenadas;
-      mundo.frequencia = frequencia;
-      mundo.codificacao = codificacao;
-      mundo.name = name;
-      mundo.cargo = cargo;
+      if (planeta) {
+      planeta.planet = planet;
+      planeta.date = date;
+      planeta.color1 = color1;
+      planeta.color2 = color2;
+      planeta.populacao = populacao;
+      planeta.recursos = recursos;
+      planeta.assentamentos = assentamentos;
+      planeta.galaxia = galaxia;
+      planeta.sistema = sistema;
+      planeta.coordenadas = coordenadas;
+      planeta.frequencia = frequencia;
+      planeta.codificacao = codificacao;
+      planeta.name = name;
+      planeta.cargo = cargo;
       }
-      return mundo;
+      return planeta;
     }
   }
   
-  const mundoRepository = new PlanetaRepository();
+  const planetaRepositorio = new PlanetaRepositorio();
+  const newPlaneta = new Planeta(planeta.planet, planeta.date, planeta.color1, planeta.color2, planeta.populacao, planeta.recursos, planeta.assentamentos, planeta.galaxia, planeta.sistema, planeta.coordenadas, planeta.frequencia, planeta.codificacao, planeta.name, planeta.cargo || 0)
   
-  export default mundoRepository;
+  planetaRepositorio.add(newPlaneta)
+  
+  export default planetaRepositorio;

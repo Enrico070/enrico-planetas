@@ -1,6 +1,6 @@
 export default class Planeta {
-    constructor(id, planet, date, color1, color2, populacao, recursos, assentamentos, galaxia, sistema, coordenadas, frequencia, codificacao, name, cargo) {
-      this.id = id;
+    constructor(planet, date, color1, color2, populacao, recursos, assentamentos, galaxia, sistema, coordenadas, frequencia, codificacao, name, cargo) {
+      this.id = this.generateId();
       this.planet = planet;
       this.date = date;
       this.color1 = color1;
@@ -16,5 +16,9 @@ export default class Planeta {
       this.name = name;
       this.cargo = cargo;
       
+    }
+
+    generateId(){
+      return Math.floor(Math.random() * 1000);
     }
   }
