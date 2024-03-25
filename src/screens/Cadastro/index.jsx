@@ -106,10 +106,10 @@ let {planeta, edit} = route.params;
 
   return (
     <View style={styles.container}>
-      <ImageBackground
+      {/* <ImageBackground
         source={require("../../../assets/planetas2.jpeg")}
         style={styles.imageBackground}
-      >
+      > */}
         <View style={{ alignItems: "center" }}>
           <View style={styles.containerinputs}>
             <Text style={styles.tituloPrincipal}>{isUpdate ? "Edição" : "Cadastro"}</Text>
@@ -350,7 +350,7 @@ let {planeta, edit} = route.params;
           </View>
         </View>
         <StatusBar style="auto" />
-      </ImageBackground>
+      {/* </ImageBackground> */}
     </View>
   );
   }

@@ -24,13 +24,13 @@ export default function Category() {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.navButtonCadastro}
-            onPress={() => navigation.navigate("Cadastro")}
+            onPress={() => navigation.navigate("Profile")}
           >
             <Text style={styles.textButtonsCard}>Planetas Cadastrados</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.navButtonCadastro}
-            onPress={() => navigation.navigate("Cadastro")}
+            onPress={() => navigation.navigate("Profile")}
           >
             <Text style={styles.textButtonsCard}>Sobre o Desenvolvedor</Text>
           </TouchableOpacity>

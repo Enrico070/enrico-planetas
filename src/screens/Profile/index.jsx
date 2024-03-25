@@ -15,7 +15,7 @@ export default function Profile({route}) {
 
   const deleteUser = () => {
     planetaRepositorio.remove(data.id);
-    // navigation.navigate("Planetas");
+    navigation.navigate("Planetas");
   }
 
 
