@@ -22,14 +22,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 import planetaRepositorio from "../../models/PlanetaRepositorio";
-import Planeta from "../../models/Planeta"; 
+import Planeta from "../../models/Planeta";
 
-export default function Cadastro({route}) {
+export default function Cadastro({ route }) {
+  const navigation = useNavigation();
 
-const navigation = useNavigation();
-
-let {planeta, edit} = route.params;
-
+  let { planeta, edit } = route.params;
 
   const [planet, setPlanet] = useState("");
   const [date, setDate] = useState("");
@@ -47,16 +45,15 @@ let {planeta, edit} = route.params;
   const [cargo, setCargo] = useState("");
   const [isUpdate, setisUpdate] = useState(edit);
 
-  
   useEffect(() => {
-    if (edit){
+    if (edit) {
       setPlanet(planeta.planet);
       setDate(planeta.date);
       setColor1(planeta.color1);
       setColor2(planeta.color2);
       setPopulacao(planeta.populacao);
       setRecursos(planeta.recursos);
-      setAssentamentos(planeta.assentamestos);
+      setAssentamentos(planeta.assentamentos);
       setGalaxia(planeta.galaxia);
       setSistema(planeta.sistema);
       setCoordenadas(planeta.coordenadas);
@@ -65,54 +62,83 @@ let {planeta, edit} = route.params;
       setName(planeta.name);
       setCargo(planeta.cargo);
       setisUpdate(true);
-    } else{
+    } else {
       clearInputs();
     }
-  }, [user, edit])
+  }, [planeta, edit]);
 
   const handlePlanetaAction = () => {
-    if (isUpdate){
-      planetaRepositorio.update(planeta.planet, planeta.date, planeta.color1, planeta.color2, planeta.populacao, planeta.recursos, planeta.assentamentos, planeta.galaxia, planeta.sistema, planeta.coordenadas, planeta.frequencia, planeta.codificacao, planeta.name, planeta.cargo || 0)
+    if (isUpdate) {
+      const newPlaneta = new Planeta(
+        planeta.id,
+        planet,
+        date,
+        color1,
+        color2,
+        populacao,
+        recursos,
+        assentamentos,
+        galaxia,
+        sistema,
+        coordenadas,
+        frequencia,
+        codificacao,
+        name,
+        cargo || 0
+      );
+      planetaRepositorio.update(newPlaneta);
       clearInputs();
-    } else{
-      const newPlaneta = new Planeta(planet, date, color1, color2, populacao, recursos, assentamentos, galaxia, sistema, coordenadas, frequencia, codificacao, name, cargo || 0)
-      planetaRepositorio.add(newPlaneta)
-     clearInputs();
+    } else {
+      planetaRepositorio.update(
+        planeta.planet,
+        planeta.date,
+        planeta.color1,
+        planeta.color2,
+        planeta.populacao,
+        planeta.recursos,
+        planeta.assentamentos,
+        planeta.galaxia,
+        planeta.sistema,
+        planeta.coordenadas,
+        planeta.frequencia,
+        planeta.codificacao,
+        planeta.name,
+        planeta.cargo || 0
+      );
     }
     // navigation.navigate("Planeta")
-  }
+  };
 
   const clearInputs = () => {
     setisUpdate(false);
-    edit = false
+    edit = false;
     setPlanet("");
-      setDate("");
-      setColor1("");
-      setColor2("");
-      setPopulacao("");
-      setRecursos("");
-      setAssentamentos("");
-      setGalaxia("");
-      setSistema("");
-      setCoordenadas("");
-      setFrequencia("");
-      setCodificacao("");
-      setName("");
-      setCargo("");
-  }
-
-
-  
+    setDate("");
+    setColor1("");
+    setColor2("");
+    setPopulacao("");
+    setRecursos("");
+    setAssentamentos("");
+    setGalaxia("");
+    setSistema("");
+    setCoordenadas("");
+    setFrequencia("");
+    setCodificacao("");
+    setName("");
+    setCargo("");
+  };
 
   return (
     <View style={styles.container}>
-      {/* <ImageBackground
+      <ImageBackground
         source={require("../../../assets/planetas2.jpeg")}
         style={styles.imageBackground}
-      > */}
+      >
         <View style={{ alignItems: "center" }}>
           <View style={styles.containerinputs}>
-            <Text style={styles.tituloPrincipal}>{isUpdate ? "Edição" : "Cadastro"}</Text>
+            <Text style={styles.tituloPrincipal}>
+              {isUpdate ? "Edição" : "Cadastro"}
+            </Text>
             <Text style={styles.tituloSecundario}>Dados do Planeta:</Text>
 
             <View style={styles.icondisplay}>
@@ -331,8 +357,13 @@ let {planeta, edit} = route.params;
               />
             </View>
             <View style={styles.buttondisplay}>
-              <TouchableOpacity style={styles.button} onPress={handlePlanetaAction}>
-                <Text style={{ color: "white" }}>{isUpdate ? "Salvar" : "Adicionar" }</Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={handlePlanetaAction}
+              >
+                <Text style={{ color: "white" }}>
+                  {isUpdate ? "Salvar" : "Adicionar"}
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
@@ -340,17 +371,24 @@ let {planeta, edit} = route.params;
               >
                 <Text style={{ color: "white" }}>Voltar</Text>
               </TouchableOpacity>
-            </View>
 
-            {isUpdate && (
-              <TouchableOpacity style={styles.button} onPress={clearInputs}>
-                <Text>Cancelar</Text>
-              </TouchableOpacity>
-            )}
+              {isUpdate ? (
+                <TouchableOpacity style={styles.button} onPress={clearInputs}>
+                  <Text style={{ color: "white" }}>Cancelar</Text>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => navigation.navigate("Planetas")}
+                >
+                  <Text style={{ color: "white" }}>Ver</Text>
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
         </View>
         <StatusBar style="auto" />
-      {/* </ImageBackground> */}
+      </ImageBackground>
     </View>
   );
-  }
+}

@@ -44,7 +44,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 5,
   },
-
+  display: {
+    display: "none",
+  },
   inputs: {
     padding: 2,
     width: 300,
