@@ -2,35 +2,32 @@ import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-import planetaRepositorio from "../../models/PlanetaRepositorio"
+import planetaRepositorio from "../../models/PlanetaRepositorio";
 
-export default function Profile({route}) {
-
+export default function Profile({ route }) {
   const navigation = useNavigation();
-  const {data} = route.params;
+  const { data } = route.params;
 
   const editUser = () => {
-    navigation.navigate("Cadastro", {planeta: data, edit: true});
+    navigation.navigate("Cadastro", { planeta: data, edit: true });
   };
 
   const deleteUser = () => {
     planetaRepositorio.remove(data.id);
     navigation.navigate("Planetas");
-  }
-
-
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.textPrincipal}>Profile</Text>
 
-      {data ?  (
+      {data ? (
         <Text>Detalhes do Planeta</Text>
       ) : (
         <Text>Selecione um planeta para exibir seus detalhes</Text>
       )}
-        
-        <View style={styles.planeta}>
+
+      <View style={styles.planeta}>
         <View style={styles.planetaDetail}>
           <Text style={styles.text}>{data.planet}</Text>
           <Text style={styles.text}>{data.date}</Text>
