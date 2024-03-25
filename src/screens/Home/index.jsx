@@ -30,7 +30,7 @@ export default function Category() {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.navButtonCadastro}
-            onPress={() => navigation.navigate("Profile")}
+            onPress={() => navigation.navigate("Planetas")}
           >
             <Text style={styles.textButtonsCard}>Sobre o Desenvolvedor</Text>
           </TouchableOpacity>

@@ -27,7 +27,7 @@ export default function Planetas(){
           {allPlanetas.map((planeta) => (
             <View key={planeta.id} style={styles.planetaItem}>
               <View>
-                <Text style={styles.planetaName}>{planeta.name}</Text>
+                <Text style={styles.planetaName}>{planeta.planet}</Text>
               </View>
 
               <View style={styles.planetaActions}>
