@@ -8,11 +8,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: "center",
     margin: 0,
-    color: "#fff",
+    color: "#f18392",
   },
   imageBackground: {
     flex: 1,
-    alignItems: "center",
   },
   button: {
     backgroundColor: "#0000FF",
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    borderBottomColor: "#f18392",
   },
   planetaDetailButton: {
     padding: 10,
@@ -48,14 +47,7 @@ const styles = StyleSheet.create({
     color: "#f0f0f0",
     fontWeight: "bold",
   },
-  editButton: {
-    padding: 5,
-    borderRadius: 5,
-    backgroundColor: "#4CAF50",
-    marginRight: 5,
-    minWidth: 70,
-    alignItems: "center",
-  },
+
   detailsButton: {
     padding: 5,
     borderRadius: 5,

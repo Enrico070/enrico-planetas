@@ -5,7 +5,7 @@ import {
   View,
   StatusBar,
 } from "react-native";
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from "react-native-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
@@ -31,8 +31,8 @@ export default function Cadastro({ route }) {
 
   const [planet, setPlanet] = useState("");
   const [date, setDate] = useState("");
-  const [color1, setColor1] = useState('#ff0000');
-  const [color2, setColor2] = useState('#00ff00');
+  const [color1, setColor1] = useState("#ff0000");
+  const [color2, setColor2] = useState("#00ff00");
   const [populacao, setPopulacao] = useState("");
   const [recursos, setRecursos] = useState("");
   const [assentamentos, setAssentamentos] = useState("");
@@ -45,28 +45,26 @@ export default function Cadastro({ route }) {
   const [cargo, setCargo] = useState("");
   const [isUpdate, setisUpdate] = useState(edit);
 
-
   const colorMap = {
-    vermelho: '#ff0000',
-    verde: '#00ff00',
-    azul: '#0000ff',
-    amarelo: '#ffff00',
-    ciano: '#00ffff',
-    magenta: '#ff00ff',
-    branco: '#ffffff',
-    preto: '#000000',
-    laranja: '#ffa500',
-    rosa: '#ffc0cb',
-    roxo: '#800080',
-    marrom: '#a52a2a',
-    coral: '#ff7f50',
-    ouro: '#ffd700',
-    lima: '#00ff00',
-    prata: '#c0c0c0',
-    oliva: '#808000',
-    turquesa: '#40e0d0',
-    salmao: '#fa8072',
-    
+    vermelho: "#ff0000",
+    verde: "#00ff00",
+    azul: "#0000ff",
+    amarelo: "#ffff00",
+    ciano: "#00ffff",
+    magenta: "#ff00ff",
+    branco: "#ffffff",
+    preto: "#000000",
+    laranja: "#ffa500",
+    rosa: "#ffc0cb",
+    roxo: "#800080",
+    marrom: "#a52a2a",
+    coral: "#ff7f50",
+    ouro: "#ffd700",
+    lima: "#00ff00",
+    prata: "#c0c0c0",
+    oliva: "#808000",
+    turquesa: "#40e0d0",
+    salmao: "#fa8072",
   };
 
   const handleColorChange = (color, setColor) => {
@@ -88,8 +86,6 @@ export default function Cadastro({ route }) {
       />
     );
   };
-
-
 
   useEffect(() => {
     if (edit) {
@@ -180,7 +176,6 @@ export default function Cadastro({ route }) {
         source={require("../../../assets/planetas2.jpeg")}
         style={styles.imageBackground}
       >
-        {renderGradient()}
         <View style={{ alignItems: "center" }}>
           <View style={styles.containerinputs}>
             <Text style={styles.tituloPrincipal}>
@@ -230,7 +225,7 @@ export default function Cadastro({ route }) {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a cor primária do planeta"
-                onChangeText={(text) => handleColorChange(text, setColor1)}
+                onChangeText={setColor1}
                 value={color1}
               />
             </View>
@@ -246,7 +241,7 @@ export default function Cadastro({ route }) {
               <TextInput
                 style={styles.inputs}
                 placeholder="Digite a cor secundária do planeta"
-                onChangeText={(text) => handleColorChange(text, setColor2)}
+                onChangeText={setColor2}
                 value={color2}
               />
             </View>

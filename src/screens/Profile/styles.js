@@ -6,13 +6,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  }, textPrincipal: {
+  },
+  textPrincipal: {
     fontSize: 30,
     textAlign: "center",
     margin: 0,
     color: "#fff",
     marginTop: 100,
-  }, button: {
+  },
+  button: {
     backgroundColor: "#0000FF",
     borderRadius: 10,
     margin: 15,
@@ -36,13 +38,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   editButton: {
-    backgroundColor: "#0000FF",
     borderRadius: 10,
     margin: 15,
     width: 72,
     height: 34,
     alignItems: "center",
     padding: 5,
+    color: "#f0f0f0",
+    backgroundColor: "#0000FF",
+    marginRight: 5,
+    minWidth: 70,
   },
   deleteButton: {
     backgroundColor: "#ff0000",
@@ -50,6 +55,7 @@ const styles = StyleSheet.create({
     margin: 15,
     width: 72,
     height: 34,
+    color: "#f0f0f0",
     alignItems: "center",
     padding: 5,
   },

@@ -20,14 +20,14 @@ export default function Planetas() {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../../../assets/planetas2.jpeg")}
+        source={require("../../../assets/fupl.jpg")}
         style={styles.imageBackground}
       >
         <View
           style={{
             alignItems: "center",
             justifyContent: "center",
-            marginTop: 300,
+            marginTop: 290,
           }}
         >
           <Text style={styles.textPrincipal}>Planetas:</Text>

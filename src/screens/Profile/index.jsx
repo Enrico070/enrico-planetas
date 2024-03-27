@@ -47,10 +47,24 @@ export default function Profile({ route }) {
 
         <View style={styles.planetaActions}>
           <TouchableOpacity style={styles.editButton} onPress={editUser}>
-            <Text>Editar</Text>
+            <Text
+              style={{
+                color: "#f0f0f0",
+                fontSize: 16,
+              }}
+            >
+              Editar
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.deleteButton} onPress={deleteUser}>
-            <Text>Excluir</Text>
+            <Text
+              style={{
+                color: "#f0f0f0",
+                fontSize: 16,
+              }}
+            >
+              Excluir
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
