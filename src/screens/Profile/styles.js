@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+
     justifyContent: "center",
   },
   textPrincipal: {
@@ -13,6 +12,10 @@ const styles = StyleSheet.create({
     margin: 0,
     color: "#fff",
     marginTop: 100,
+  },
+  imageBackground: {
+    flex: 1,
+    alignItems: "center",
   },
   button: {
     backgroundColor: "#0000FF",

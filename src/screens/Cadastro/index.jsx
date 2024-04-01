@@ -5,7 +5,7 @@ import {
   View,
   StatusBar,
 } from "react-native";
-import LinearGradient from "react-native-linear-gradient";
+
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
@@ -27,12 +27,14 @@ import Planeta from "../../models/Planeta";
 export default function Cadastro({ route }) {
   const navigation = useNavigation();
 
-  let { planeta, edit } = route.params;
+  let { planeta, edit } = route.params || {};
+
+  console.log("ediatando planta", planeta);
 
   const [planet, setPlanet] = useState("");
   const [date, setDate] = useState("");
-  const [color1, setColor1] = useState("#ff0000");
-  const [color2, setColor2] = useState("#00ff00");
+  const [color1, setColor1] = useState("");
+  const [color2, setColor2] = useState("");
   const [populacao, setPopulacao] = useState("");
   const [recursos, setRecursos] = useState("");
   const [assentamentos, setAssentamentos] = useState("");
@@ -44,48 +46,6 @@ export default function Cadastro({ route }) {
   const [name, setName] = useState("");
   const [cargo, setCargo] = useState("");
   const [isUpdate, setisUpdate] = useState(edit);
-
-  const colorMap = {
-    vermelho: "#ff0000",
-    verde: "#00ff00",
-    azul: "#0000ff",
-    amarelo: "#ffff00",
-    ciano: "#00ffff",
-    magenta: "#ff00ff",
-    branco: "#ffffff",
-    preto: "#000000",
-    laranja: "#ffa500",
-    rosa: "#ffc0cb",
-    roxo: "#800080",
-    marrom: "#a52a2a",
-    coral: "#ff7f50",
-    ouro: "#ffd700",
-    lima: "#00ff00",
-    prata: "#c0c0c0",
-    oliva: "#808000",
-    turquesa: "#40e0d0",
-    salmao: "#fa8072",
-  };
-
-  const handleColorChange = (color, setColor) => {
-    const hexColor = colorMap[color.toLowerCase()];
-    if (hexColor) {
-      setColor(hexColor);
-    } else {
-      setColor(color);
-    }
-  };
-
-  const renderGradient = () => {
-    return (
-      <LinearGradient
-        colors={[color1, color2]}
-        style={styles.gradient}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      />
-    );
-  };
 
   useEffect(() => {
     if (edit) {
@@ -110,28 +70,26 @@ export default function Cadastro({ route }) {
   }, [planeta, edit]);
 
   const handlePlanetaAction = () => {
-    if (isUpdate) {
-      const newPlaneta = new Planeta(
-        planeta.id,
-        planet,
-        date,
-        color1,
-        color2,
-        populacao,
-        recursos,
-        assentamentos,
-        galaxia,
-        sistema,
-        coordenadas,
-        frequencia,
-        codificacao,
-        name,
-        cargo || 0
-      );
-      planetaRepositorio.update(newPlaneta);
-      clearInputs();
-    } else {
+    if (
+      !planet ||
+      !date ||
+      !color1 ||
+      !color2 ||
+      !populacao ||
+      !recursos ||
+      !assentamentos ||
+      !galaxia ||
+      !sistema ||
+      !coordenadas ||
+      !frequencia ||
+      !codificacao ||
+      !name ||
+      !cargo
+    ) {
+      alert("Preencha todos os campos");
+    } else if (isUpdate) {
       planetaRepositorio.update(
+        planeta.id,
         planeta.planet,
         planeta.date,
         planeta.color1,
@@ -147,8 +105,35 @@ export default function Cadastro({ route }) {
         planeta.name,
         planeta.cargo || 0
       );
+
+      clearInputs();
+      navigation.navigate("Planetas");
+      console.log(planetaRepositorio);
+    } else {
+      const newPlaneta = new Planeta(
+        planet,
+        date,
+        color1,
+        color2,
+        populacao,
+        recursos,
+        assentamentos,
+        galaxia,
+        sistema,
+        coordenadas,
+        frequencia,
+        codificacao,
+        name,
+        cargo || 0
+      );
+      clearInputs();
+      planetaRepositorio.add(newPlaneta);
+      navigation.navigate("Planetas");
     }
-    // navigation.navigate("Planeta")
+  };
+
+  const error = () => {
+    <Text style={styles.error}>Preencha todos os campos</Text>;
   };
 
   const clearInputs = () => {
@@ -398,6 +383,7 @@ export default function Cadastro({ route }) {
                 value={cargo}
               />
             </View>
+
             <View style={styles.buttondisplay}>
               <TouchableOpacity
                 style={styles.button}

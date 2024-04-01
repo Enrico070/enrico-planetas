@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  error: {
+    color: "red",
+    fontSize: 15,
+  },
 
   tituloPrincipal: {
     fontSize: 30,
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   gradient: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
